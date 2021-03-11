@@ -4,6 +4,7 @@ import com.example.daggerandroid.MainActivity
 import com.example.daggerandroid.car.Car
 import com.example.daggerandroid.di.module.PetrolEngineModule
 import com.example.daggerandroid.di.module.WheelsModule
+import dagger.BindsInstance
 import dagger.Component
 
 // @Component makes Dagger create a graph of dependencies
@@ -18,9 +19,17 @@ interface CarComponent {
     // Field Injection using inject function as we need to inject the MainActivity
     // inside CarComponent to use the fields(variables) of MainActivity
     fun inject(mainActivity: MainActivity)
+
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun powerCapacity(powerCapacity: Int): Builder
+        fun build(): CarComponent
+    }
 }
 
 /** Note-: When we include both DieselEngineModule and PetrolEngineModule, and both have same method i.e
  * start() inside method, we will receive error "Engine is bound multiple times" because Dagger will get
- * confused that which module to use,that is why we should provide just one module to CarComponent
+ * confused that which module to use,that is why we should provide just one module to CarComponent.
  */
