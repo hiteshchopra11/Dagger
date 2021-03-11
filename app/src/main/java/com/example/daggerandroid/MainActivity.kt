@@ -2,8 +2,9 @@ package com.example.daggerandroid
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.daggerandroid.di.CarComponent
-import com.example.daggerandroid.di.DaggerCarComponent
+import com.example.daggerandroid.car.Car
+import com.example.daggerandroid.di.component.CarComponent
+import com.example.daggerandroid.di.component.DaggerCarComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -11,8 +12,6 @@ class MainActivity : AppCompatActivity() {
     //Field Injection using @Inject annotation
     @Inject
     lateinit var car1: Car
-    @Inject
-    lateinit var car2: Car
 
     //Late initialise CarComponent
     lateinit var carComponent: CarComponent
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         //Call the function driveCar()
         car1.driveCar()
-        car2.driveCar()
     }
 }
 
