@@ -6,15 +6,8 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Inject
 
-/* If we directly try to inject Engine interface inside our
- * Car class, we will get an exception as Dagger is not able
- * create an Engine object. We need to use module for the same.
- * We will tell Dagger to use this "module" (provided below with
- * @Module annotation) to create engine object.
- */
-
 @Module
-class PetrolEngineModule @Inject constructor(private val powerCapacity: Int) {
+class PetrolEngineModule @Inject constructor() {
 
     /*We return the instance of PetrolEngine passed through the
      *constructor only if petrolEngine has no parameters to be passed*/
@@ -40,8 +33,21 @@ class PetrolEngineModule @Inject constructor(private val powerCapacity: Int) {
      * PetrolEngineModule constructor. Instructions on how to pass the values
      */
 
+    /* @Provides
+     *  fun providesPetrolEngine(): Engine {
+     *     return PetrolEngine(powerCapacity)
+     *  }
+     */
+
+    /* We can also use Component.Builder inside our CarComponent to directly pass
+     * the values into the providesPetrolEngine() method instead of the PetrolEngineModule
+     * class. We use @Component.Builder for Builder interface and @BindsInstance to inject
+     * values into the @Provides method
+     */
+
     @Provides
-    fun providesPetrolEngine(): Engine {
+    fun providesPetrolEngine(powerCapacity: Int): Engine {
         return PetrolEngine(powerCapacity)
     }
+
 }
