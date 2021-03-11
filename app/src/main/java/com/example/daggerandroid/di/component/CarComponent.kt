@@ -3,11 +3,12 @@ package com.example.daggerandroid.di.component
 import com.example.daggerandroid.MainActivity
 import com.example.daggerandroid.car.Car
 import com.example.daggerandroid.di.module.PetrolEngineModule
+import com.example.daggerandroid.di.module.WheelsModule
 import dagger.Component
 
 // @Component makes Dagger create a graph of dependencies
 // "modules=" contains all modules which are required by the particular Component
-@Component(modules = [PetrolEngineModule::class])
+@Component(modules = [PetrolEngineModule::class, WheelsModule::class])
 interface CarComponent {
 
     // The return type  of functions inside the component interface is

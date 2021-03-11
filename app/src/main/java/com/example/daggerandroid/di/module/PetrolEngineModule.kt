@@ -2,6 +2,7 @@ package com.example.daggerandroid.di.module
 
 import com.example.daggerandroid.car.Engine
 import com.example.daggerandroid.car.engine.PetrolEngine
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
@@ -13,11 +14,9 @@ import dagger.Provides
  */
 
 @Module
-class PetrolEngineModule {
+abstract class PetrolEngineModule {
 
-    //Provides is used for every method we want to provide to Car class
-    @Provides
-    fun providesPetrolEngine(petrolEngine: PetrolEngine): Engine {
-        return petrolEngine
-    }
+    //We can use @Binds in place of @Provides if class is abstract
+    @Binds
+    abstract fun providesPetrolEngine(petrolEngine: PetrolEngine): Engine
 }

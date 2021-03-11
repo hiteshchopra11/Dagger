@@ -1,6 +1,14 @@
 package com.example.daggerandroid.car
 
-import javax.inject.Inject
+import com.example.daggerandroid.car.wheels.Rims
+import com.example.daggerandroid.car.wheels.Tyres
 
-// @Inject lets Dagger know how to create instances of these objects
-class Wheels @Inject constructor()
+/** Assume Wheels is not our class but a third party class which
+ *  we don't have access to for modification, so we can't use @Inject
+ *  In this case we can't pass wheels in constructor of WheelsModule
+ *  class, instead we create Wheels object manually and return them
+ */
+
+//Now wheels is dependent on Rims and Tyres classes
+class Wheels constructor(private val rims: Rims, private val tyres: Tyres) {
+}
