@@ -1,4 +1,4 @@
-package com.example.daggerandroid
+package com.example.daggerandroid.car
 
 import javax.inject.Inject
 
