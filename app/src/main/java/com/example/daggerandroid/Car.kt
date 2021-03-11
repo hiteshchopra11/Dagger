@@ -3,8 +3,10 @@ package com.example.daggerandroid
 import android.util.Log
 import javax.inject.Inject
 
+
+// @Inject lets Dagger know how to create instances of these objects
 class Car @Inject constructor(wheels: Wheels, engine: Engine) {
-    fun start() {
-        Log.e("Driving", "Driving the Car")
+    fun driveCar() {
+        Log.d("Car", "Driving the Car....")
     }
 }
