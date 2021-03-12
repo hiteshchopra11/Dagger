@@ -7,9 +7,14 @@ import com.example.daggerandroid.di.module.WheelsModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Named
+import javax.inject.Singleton
 
 // @Component makes Dagger create a graph of dependencies
 // "modules=" contains all modules which are required by the particular Component
+
+//@Singleton is used to use a single instance of the class throughout the app
+
+@Singleton
 @Component(modules = [PetrolEngineModule::class, WheelsModule::class])
 interface CarComponent {
 

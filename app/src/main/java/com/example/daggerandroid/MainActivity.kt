@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var car1: Car
 
+    @Inject
+    lateinit var car2: Car
+
     //Late initialise CarComponent
     lateinit var carComponent: CarComponent
 
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         //Call the function driveCar()
         car1.driveCar()
+        car2.driveCar()
     }
 }
 
