@@ -6,6 +6,7 @@ import com.example.daggerandroid.di.module.PetrolEngineModule
 import com.example.daggerandroid.di.module.WheelsModule
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Named
 
 // @Component makes Dagger create a graph of dependencies
 // "modules=" contains all modules which are required by the particular Component
@@ -24,12 +25,17 @@ interface CarComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun powerCapacity(powerCapacity: Int): Builder
+        fun powerCapacity(@Named("power") powerCapacity: Int): Builder
+
+        @BindsInstance
+        fun engineCapacity(@Named("engine") engineCapacity: Int): Builder
+
         fun build(): CarComponent
     }
 }
 
-/** Note-: When we include both DieselEngineModule and PetrolEngineModule, and both have same method i.e
- * start() inside method, we will receive error "Engine is bound multiple times" because Dagger will get
- * confused that which module to use,that is why we should provide just one module to CarComponent.
+
+/**The @Named annotation is good for identifying which provider to be used when we are trying to inject the dependency of the same type.
+ * For example in this case when we have multiple @BindsInstance or @Provides methods or arguments with same data type, we can used @Named
+ * annotation so that Dagger can differentiate between them, otherwise "<Data Type> is bound multiple times" error will be thrown.
  */
