@@ -45,9 +45,21 @@ class PetrolEngineModule @Inject constructor() {
      * values into the @Provides method
      */
 
-    @Provides
-    fun providesPetrolEngine(powerCapacity: Int): Engine {
-        return PetrolEngine(powerCapacity)
-    }
+    /* @Provides
+     * fun providesPetrolEngine(powerCapacity: Int): Engine {
+     *      return PetrolEngine(powerCapacity)
+     *   }
+     */
 
+    /** While using @Named annotation when we have multiple arguments with the same type,
+     * we can simply pass the PetrolEngine instance to the constructor of the providesPetrolEngine()
+     * method and return PetrolEngine instance from here with arguments and then pass the arguments through
+     * our Activity.
+     */
+
+
+    @Provides
+    fun providesPetrolEngine(petrolEngine: PetrolEngine): Engine {
+        return petrolEngine
+    }
 }
